@@ -1,13 +1,16 @@
 import { resolve } from "path";
+import dotenv from 'dotenv';
+
+dotenv.config({ path: resolve(__dirname, '../../.env') });
 
 export default {
   client: 'postgresql',
   connection: {
-    host: 'localhost',
-    port: 5432,
-    database: 'secret-sharing-app-db',
-    user: 'postgres',
-    password: 'postgres'
+    host: process.env.DB_HOST,
+    port: parseInt(process.env.DB_PORT as string),
+    database: process.env.DB_DATABASE,
+    user:     process.env.DB_USER,
+    password: process.env.DB_PASSWORD
   },
   migrations: {
     directory: resolve(__dirname, '../../migrations'),
