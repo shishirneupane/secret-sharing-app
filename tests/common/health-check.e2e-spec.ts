@@ -15,7 +15,6 @@ describe('Health check e2e', () => {
   it('GET /health-check returns 200 ok', () => {
     return request(app.instance)
       .get('/health-check')
-      .send()
       .expect(200);
   });
 

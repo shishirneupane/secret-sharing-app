@@ -5,7 +5,7 @@ export async function up(knex: Knex): Promise<void> {
     table.uuid('id');
     table.text('body');
     table.string('password').nullable();
-    table.specificType('expires_in', 'INTERVAL');
+    table.specificType('expiresIn', 'INTERVAL');
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });
