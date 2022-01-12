@@ -7,6 +7,7 @@ export class GetSecretQuery {
 		return new Secret({
 			id: result.id,
 			body: result.body,
+			password: result.password,
 			expiresIn: result.expiresIn,
 		});
 	}

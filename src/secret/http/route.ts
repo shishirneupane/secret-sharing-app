@@ -5,5 +5,6 @@ const secretRouter = express.Router();
 
 secretRouter.post('/secrets', secretController.postSecret);
 secretRouter.get('/secrets/:id', secretController.getSingleSecret);
+secretRouter.post('/private/:id', secretController.checkPassword);
 
 export { secretRouter };
