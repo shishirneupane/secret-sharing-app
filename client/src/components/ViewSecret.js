@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { useParams } from 'react-router-dom';
+import { passwordState, validPasswordState } from '../atoms';
 
 const ViewSecret = () => {
-	const [password, setPassword] = useState('');
-	const [validPassword, setValidPassword] = useState('');
+	const [password, setPassword] = useRecoilState(passwordState);
+	const [validPassword, setValidPassword] = useRecoilState(validPasswordState);
 	const { id } = useParams();
 
 	const checkPassword = async (password) => {
