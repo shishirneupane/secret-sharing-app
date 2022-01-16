@@ -23,42 +23,68 @@ const CreateSecret = () => {
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const secretBody = { body, password, expiresIn };
-			const data = await createSecret(secretBody);
-			navigate(`/private/${data.id}`);
-			setBody('');
-			setPassword('');
-			setExpiresIn('');
+			if (body && password && expiresIn) {
+				const secretBody = { body, password, expiresIn };
+				const data = await createSecret(secretBody);
+				navigate(`/private/${data.id}`);
+				setBody('');
+				setPassword('');
+				setExpiresIn('');
+			} else {
+				alert('Please enter all the fields.');
+			}
 		} catch (err) {
 			console.error(err.message);
+			alert('Could not create the secret.');
 		}
 	};
 
 	return (
-		<section>
-			<h1>One Time Secret</h1>
-			<p>Paste a password, secret message or private link below.</p>
+		<section className="text-center mt-8">
+			<h1 className="text-4xl font-bold text-orange-600 my-4">
+				One Time Secret
+			</h1>
+
+			<p className="my-4">
+				Paste a password, secret message or private link below.
+			</p>
+
 			<hr />
-			<form onSubmit={onSubmit}>
-				<div>
-					<label htmlFor="secret">Secret</label>
+
+			<form className="my-4" onSubmit={onSubmit}>
+				<div className="my-8">
+					<label className="text-lg mr-6 font-bold " htmlFor="secret">
+						Secret
+					</label>
 					<input
+						className="ml-10 bg-gray-100 border-2 border-gray-200 rounded py-2 px-4 
+						focus:outline-none focus:bg-white focus:border-orange-500"
 						type="text"
 						value={body}
 						onChange={(e) => setBody(e.target.value)}
 					/>
 				</div>
-				<div>
-					<label htmlFor="password">Password</label>
+
+				<div className="my-8">
+					<label className="text-lg font-bold" htmlFor="password">
+						Password
+					</label>
 					<input
+						className="ml-10 bg-gray-100 border-2 border-gray-200 rounded py-2 px-4 
+						focus:outline-none focus:bg-white focus:border-orange-500"
 						type="text"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 				</div>
-				<div>
-					<label htmlFor="expiresIn">Expires In</label>
+
+				<div className="my-8">
+					<label className="text-lg font-bold " htmlFor="expiresIn">
+						Expires In
+					</label>
 					<select
+						className="ml-10 w-52 mr-2 bg-gray-100 border-2 border-gray-200 rounded py-2 px-4 
+						focus:outline-none focus:bg-white focus:border-orange-500 "
 						name="expiresIn"
 						id="expiresIn"
 						onChange={(e) => setExpiresIn(e.target.value)}
@@ -72,8 +98,16 @@ const CreateSecret = () => {
 						<option value="7 days">7 days</option>
 					</select>
 				</div>
-				<div>
-					<input type="submit" value="Create Secret" />
+
+				<div className="my-10">
+					<input
+						type="submit"
+						value="Create Secret"
+						className="rounded py-2 px-6 bg-orange-500 text-white border-2 
+						border-orange-500 font-bold cursor-pointer text-xl
+						hover:bg-white hover:text-orange-500 hover:border-orange-500 hover:outline-none
+						focus:bg-white focus:text-orange-500 focus:border-orange-500 focus:outline-none"
+					/>
 				</div>
 			</form>
 		</section>

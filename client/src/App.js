@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 import CreateSecret from './components/CreateSecret';
 import SecretLink from './components/SecretLink';
 import ViewSecret from './components/ViewSecret';
